@@ -71,7 +71,7 @@
                     this.message = true;
                     this.error_message = response.data.message;
                 } else {
-                    console.log(response.data);
+                    localStorage.setItem('userRole', response.data.role);
                     localStorage.setItem('token', response.data.token);
                     this.loading = true;
                     if(response.data.role == '0'){

@@ -6,7 +6,7 @@
                     <!-- <img :src="imageSrc" alt="Example Image" height="60"/> -->
                     <h1>Sample App</h1>
                 </v-list-item>
-                <v-list-item link href="/admin" prepend-icon="mdi-view-dashboard-outline" title="Dashboard"></v-list-item>
+                <v-list-item link href="/client" prepend-icon="mdi-view-dashboard-outline" title="Dashboard"></v-list-item>
                 <!-- <v-list-group value="">
                     <template v-slot:activator="{ props }">
                         <v-list-item
@@ -33,8 +33,9 @@
                     <v-list-item title="Instrument Sets" to="/admin/instrument_sets"></v-list-item>
                 </v-list-group> -->
               
-                <v-list-item link href="/admin/users" prepend-icon="mdi-account-group" title="Users"></v-list-item>
-                <v-list-group>
+                <v-list-item link href="/client/members" prepend-icon="mdi-account-group" title="Members"></v-list-item>
+                <v-list-item link href="/client/reports" prepend-icon="mdi-chart-line" title="Reports"></v-list-item>
+                <!-- <v-list-group>
                     <template v-slot:activator="{ props }">
                         <v-list-item
                             prepend-icon="mdi-cog"
@@ -45,7 +46,7 @@
                     </template>
                     <v-list-item title="Branches" to="/admin/branches"></v-list-item>
                     <v-list-item title="Locations" to="/admin/locations"></v-list-item>
-                </v-list-group>
+                </v-list-group> -->
             </v-list>
         <template v-slot:append>
             <div class="pa-2">
@@ -65,7 +66,7 @@
         <v-app-bar :elevation="1">
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-app-bar-title style="font-size:14px;">
-                <p v-if="userRole === '0'">Welcome, <b>Admin!</b></p>
+                <p v-if="userRole === '1'">Welcome, <b>User!</b></p>
                 <!-- <p v-else-if="userRole === '30'">Hello, <b>Medtech!</b></p>
                 <p v-else-if="userRole === '35'">Hello, <b>Phlebo!</b></p>
                 <p v-else-if="userRole === '45'">Hello, <b>Patho!</b></p>

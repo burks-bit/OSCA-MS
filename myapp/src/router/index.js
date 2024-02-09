@@ -15,9 +15,6 @@ const routes = [
   {
     path: '/admin',
     name: 'AdminHome',
-    // route level code-splitting
-    // this generates a separate chunk (Home-[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('@/views/Admin/Index.vue'),
     meta: {
       layout: AdminLayout
@@ -26,10 +23,23 @@ const routes = [
   {
     path: '/client',
     name: 'ClientHome',
-    // route level code-splitting
-    // this generates a separate chunk (Home-[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('@/views/Client/Index.vue'),
+    meta: {
+      layout: ClientLayout
+    },
+  },
+  {
+    path: '/client/reports',
+    name: 'Reports',
+    component: () => import('@/views/Client/Reports/Reports.vue'),
+    meta: {
+      layout: ClientLayout
+    },
+  },
+  {
+    path: '/client/members',
+    name: 'Members',
+    component: () => import('@/views/Client/Members/Members.vue'),
     meta: {
       layout: ClientLayout
     },
@@ -37,9 +47,6 @@ const routes = [
   {
     path: '/admin/users',
     name: 'UserList',
-    // route level code-splitting
-    // this generates a separate chunk (Home-[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('@/views/Admin/Users/UserList.vue'),
     meta: {
       layout: AdminLayout
