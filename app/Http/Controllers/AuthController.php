@@ -25,7 +25,6 @@ class AuthController extends Controller
         }
         $user = User::where('username', $request->username)->firstOrFail();
         $role = $user->role;
-        Log::info($role);
         $token = $user->createToken('authToken')->plainTextToken;
 
         return response()->json([
@@ -69,6 +68,8 @@ class AuthController extends Controller
     // User logout
     public function logout(Request $request)
     {
+        Log::info('tagos hanggang dito');
+        Log::info($request->user());
         $request->user()->tokens()->delete();
         return response()->json(['message' => 'Logged out successfully']);
     }

@@ -5,15 +5,17 @@ import ClientLayout from '@/layouts/ClientLayout.vue'
 
 // Function to check if the user is logged in
 function isLoggedIn() {
-  // Implement your logic to check if the user is logged in
-  // For example, you can check if there's a token in local storage
   return localStorage.getItem('token') !== null;
 }
 
-// Navigation guard to check authentication
 function requireAuth(to, from, next) {
+  const loggedInUserRole = localStorage.getItem('userRole');
   if (to.meta.requiresAuth && !isLoggedIn()) {
     next({ name: 'Login' }); // Redirect to login page if not logged in
+  } else if (to.name === 'Login' && isLoggedIn() && loggedInUserRole === '0') {
+    next({ name: 'AdminHome' });
+  } else if (to.name === 'Login' && isLoggedIn() && loggedInUserRole === '1') {
+    next({ name: 'ClientHome' });
   } else {
     next(); // Proceed to the route
   }
@@ -29,6 +31,7 @@ const routes = [
     path: '/admin',
     component: AdminLayout,
     meta: {
+      role: ['0'],
       requiresAuth: true,
     },
     children: [
@@ -41,6 +44,11 @@ const routes = [
         path: 'users',
         name: 'UserList',
         component: () => import('@/views/Admin/Users/UserList.vue'), 
+      },
+      {
+        path: 'edit/:id',
+        name: 'EditUser',
+        component: () => import('@/views/Admin/Users/EditUser.vue'), 
       }
     ]
   },
@@ -48,6 +56,7 @@ const routes = [
     path: '/client',
     component: ClientLayout,
     meta: {
+      role: ['1'],
       requiresAuth: true,
     },
     children: [
@@ -75,7 +84,6 @@ const router = createRouter({
   routes,
 })
 
-// Add global navigation guard
 router.beforeEach(requireAuth);
 
 export default router
