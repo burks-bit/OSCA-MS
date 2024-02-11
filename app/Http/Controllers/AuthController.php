@@ -39,37 +39,9 @@ class AuthController extends Controller
         return $request->user();
     }
 
-    // Get user role
-    // public function getUserRole()
-    // {   
-    //     Log::info('==========================');
-    //     // Log::info(auth()->user()->role);
-    //     Log::info('==========================');
-    //     return response()->json(['role' => 0]);
-    // }
-    public function getUserRole()
-    {
-        // Get the authenticated user
-        $user = auth()->user();
-
-        // Check if the user is authenticated
-        if ($user) {
-            // Retrieve the role from the users table
-            $role = $user->role; // Assuming 'role' is the column name for the role in the users table
-            
-            // Return the role in JSON format
-            return response()->json(['role' => $role]);
-        } else {
-            // User is not authenticated, return an error or default role
-            return response()->json(['error' => 'User not authenticated']);
-        }
-    }
-
     // User logout
     public function logout(Request $request)
     {
-        Log::info('tagos hanggang dito');
-        Log::info($request->user());
         $request->user()->tokens()->delete();
         return response()->json(['message' => 'Logged out successfully']);
     }

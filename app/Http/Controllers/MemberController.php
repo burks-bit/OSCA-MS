@@ -12,4 +12,8 @@ class MemberController extends Controller
         $members = Member::paginate(10);
         return response()->json($members);
     }
+    
+    public function get_member_details(Request $request){
+        Log::info($request);
+    }
 }

@@ -3,42 +3,48 @@
     <div style="margin-top:15px;margin-bottom:15px;text-align:right">
         <router-link to="/admin/users/add"><v-btn prepend-icon="mdi-account-plus" size="small">Add</v-btn></router-link>
     </div>
-    <v-table
-        fixed-header
-        height="500px"
-        width="100%"
-        density="compact"
-    >
-        <thead>
-            <tr>
-                <th class="text-left">User ID</th>
-                <th class="text-left">Complete Name</th>
-                <th class="text-left">Username</th>
-                <th class="text-left">Role</th>
-                <th class="text-center">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="user in userList.data" :key="user.id">
-                <td>{{ user.id }}</td>
-                <td>{{ user.last_name }}, {{ user.first_name }} {{ user.initials }}</td>
-                <td>{{ user.username }}</td>
-                <td>
-                    <span v-if="user.role == '0'">Admin</span>
-                    <span v-if="user.role == '45'">Pathologist</span>
-                    <span v-if="user.role == '30'">Medtech</span>
-                    <span v-if="user.role == '35'">Phlebotomy</span>
-                </td>
-                <td class="text-center">
-                    <router-link :to="{ path: '/admin/users/edit/'+ user.id }">
-                        <v-btn prepend-icon="mdi-square-edit-outline" color="primary" size="small">Edit</v-btn>
-                    </router-link>
-                    &ensp;
-                    <v-btn prepend-icon="mdi-delete-alert-outline" color="red" size="small">Delete</v-btn>
-                </td>
-            </tr>
-        </tbody>
-    </v-table>
+    <div v-if="loading" class="text-center" style="align-items:center;vertical-align:middle;">
+        <v-progress-linear color="blue-lighten-3" indeterminate></v-progress-linear>
+    </div>
+    <div v-else>
+        <v-table
+            fixed-header
+            height="500px"
+            width="100%"
+            density="compact"
+        >
+            <thead>
+                <tr>
+                    <th class="text-left">User ID</th>
+                    <th class="text-left">Complete Name</th>
+                    <th class="text-left">Username</th>
+                    <th class="text-left">Role</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in userList.data" :key="user.id">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>
+                        <span v-if="user.role == '0'">Admin</span>
+                        <span v-if="user.role == '45'">Pathologist</span>
+                        <span v-if="user.role == '30'">Medtech</span>
+                        <span v-if="user.role == '35'">Phlebotomy</span>
+                    </td>
+                    <td class="text-center">
+                        <router-link :to="{ path: '/admin/users/edit/'+ user.id }">
+                            <v-btn prepend-icon="mdi-square-edit-outline" color="primary" size="small">Edit</v-btn>
+                        </router-link>
+                        &ensp;
+                        <v-btn prepend-icon="mdi-delete-alert-outline" color="red" size="small">Delete</v-btn>
+                    </td>
+                </tr>
+            </tbody>
+        </v-table>
+    </div>
+    
 </template>
 
 <script>

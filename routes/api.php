@@ -17,30 +17,35 @@ use App\Http\Controllers\MemberController;
 |
 */
 
+
+// authenticity
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
+
+// admin - users
+Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'user']);
+Route::middleware('auth:sanctum')->get('/users/all', [UserController::class, 'allusers']);
+
+// client - Members
+Route::middleware('auth:sanctum')->get('/members/all', [MemberController::class, 'getallmembers']);
+
+
+
+// default
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout']);
-Route::get('/getUserRole', [AuthController::class, 'getUserRole']);
-Route::get('/members/all', [MemberController::class, 'getallmembers']);
-// Route::get('/users/all', [UserController::class, 'allusers']);
+// supposed to be the routing format
+// Route::group(['prefix' => 'admin', 'middleware'=>'auth:sanctum'], function(){
+//     Route::get('/user', [AuthController::class, 'user']);
+//     Route::get('/users/all', [UserController::class, 'allusers']);
+// });
 
-Route::group(['prefix' => 'admin'], function(){ // old
-// Route::prefix('admin')->group(function () {
-    Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'user']);
-    Route::middleware('auth:sanctum')->get('/users/all', [UserController::class, 'allusers']);
-    Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
-    // Route::middleware('auth:sanctum')->get('/user/role', [AuthController::class, 'getUserRole']);
-    // Route::middleware('auth:sanctum')->get('/branches', [BranchController::class, 'getallbranches']);
-    // Route::middleware('auth:sanctum')->get('/testcodes', [TestCodeController::class, 'getalltestcodes']);
-    // Route::middleware('auth:sanctum')->get('/testgroups', [TestGroupController::class, 'getalltestgroups']);
-    // Route::middleware('auth:sanctum')->get('/getbranchforadduser', [AppController::class, 'getBranchForAddUser']);
-    // Route::middleware('auth:sanctum')->get('/getdepartmentforadduser', [AppController::class, 'getDepartmentForAddUser']);
-    // Route::middleware('auth:sanctum')->get('/getrolesforadduser', [AppController::class, 'getRolesForAddUser']);
-    Route::middleware('auth:sanctum')->get('/getuserdetails/{id}', [UserController::class, 'getUserDetails']);
-    Route::middleware('auth:sanctum')->post('/adduser', [AuthController::class, 'register']);
-});
+// Route::group(['prefix' => 'client', 'middleware'=>'auth:sanctum'], function(){
+//     Route::get('/members/all', [MemberController::class, 'getallmembers']);
+//     Route::post('/members/get_member_details', [MemberController::class, 'get_member_details']);
+// });
+    
 

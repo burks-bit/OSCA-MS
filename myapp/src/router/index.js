@@ -44,11 +44,6 @@ const routes = [
         path: 'users',
         name: 'UserList',
         component: () => import('@/views/Admin/Users/UserList.vue'), 
-      },
-      {
-        path: 'edit/:id',
-        name: 'EditUser',
-        component: () => import('@/views/Admin/Users/EditUser.vue'), 
       }
     ]
   },
@@ -69,6 +64,12 @@ const routes = [
         path: 'members',
         name: 'Members',
         component: () => import('@/views/Client/Members/Members.vue'),
+      },
+      {
+        path: 'members/edit/:id',
+        name: 'EditUser',
+        component: () => import('@/views/Client/Members/EditMember.vue'),
+        props: true
       },
       {
         path: 'reports',
