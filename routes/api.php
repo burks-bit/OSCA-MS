@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->get('/users/all', [UserController::class, 'al
 
 // client - Members
 Route::middleware('auth:sanctum')->get('/members/all', [MemberController::class, 'getallmembers']);
+Route::middleware('auth:sanctum')->get('/members/getDetails', [MemberController::class, 'getDetails']);
 
 
 

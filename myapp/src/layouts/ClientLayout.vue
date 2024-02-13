@@ -34,6 +34,7 @@
                 </v-list-group> -->
               
                 <v-list-item link href="/client/members" prepend-icon="mdi-account-group" title="Members"></v-list-item>
+                <v-list-item link href="/client/membersv2" prepend-icon="mdi-account-group" title="Members v2"></v-list-item>
                 <v-list-item link href="/client/reports" prepend-icon="mdi-chart-line" title="Reports"></v-list-item>
                 <!-- <v-list-group>
                     <template v-slot:activator="{ props }">

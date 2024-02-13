@@ -7,10 +7,10 @@
         >
         <v-sheet
             max-width="256"
-            class="mt-8 pt-5 pl-5 rounded-shaped"
+            class="mt-8 pt-3 pl-5 rounded-shaped"
             elevation="6"
-            height="128"
-            width="100%"
+            height="100"
+            width="50%"
         >
             <span prepend-icon="mdi-account-group"></span>Members
             <h1 class="text-indigo">2,190</h1>

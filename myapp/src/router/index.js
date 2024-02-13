@@ -66,6 +66,11 @@ const routes = [
         component: () => import('@/views/Client/Members/Members.vue'),
       },
       {
+        path: 'membersv2',
+        name: 'Membersv2',
+        component: () => import('@/views/Client/Members/Membersv2.vue'),
+      },
+      {
         path: 'members/edit/:id',
         name: 'EditUser',
         component: () => import('@/views/Client/Members/EditMember.vue'),
